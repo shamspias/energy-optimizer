@@ -114,7 +114,7 @@ class EntsoeClient:
                     prices = parse_day_ahead_prices(resp.text)
                     return [p for p in prices if p['hour_utc'].date() == date.date()]
                 return self._generate_mock_prices(date)
-        except Exception:
+        except Exception as e:
             return self._generate_mock_prices(date)
 
     async def fetch_actual_load(self, zone_eic: str, date_str: str) -> List[Dict]:
